@@ -221,7 +221,7 @@ function App() {
         </div>
       ) : newGame ? (
         <div>
-          <div className="app mt5">
+          <div className="app">
             <Main data={data} handleChange={changeHeld} />
             <Button
               handleChange={handleChange}
