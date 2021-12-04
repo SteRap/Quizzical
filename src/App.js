@@ -1,16 +1,46 @@
 import React from "react";
 import Main from "./Main";
 import Button from "./Button";
-import logo from "./logo_app.png";
-import "./App.css";
+import SignIn from "./Signin";
+import Register from "./Register";
+import logo from "./logo3_app.png";
+import Navigation from "./Navigation";
+import Overlay from "./Overlay";
+
 import { nanoid } from "nanoid";
 
 function App() {
   const [newGame, setNewGame] = React.useState(false);
   const [data, setData] = React.useState([]);
   const [buttonOn, setButtonOn] = React.useState(false);
-  const [loadedGames, setLoadedGames] = React.useState(0);
+  const [playedGames, setPlayedGames] = React.useState(0);
   const [rightAnswers, setRightAnswers] = React.useState(0);
+  const [route, setRoute] = React.useState("signIn");
+  const [user, setUser] = React.useState({});
+  const [category, setCategory] = React.useState(9);
+
+  const API = `https://opentdb.com/api.php?amount=5&category=${category}&difficulty=medium&type=multiple&encode=base64`;
+
+  function loadUser(data) {
+    setUser({
+      id: data.id,
+      username: data.username,
+      email: data.email,
+      games: data.games,
+      rightAnswers: data.rightanswers,
+      joined: data.joined,
+    });
+  }
+
+  function onRouteChange(route) {
+    if (route === "signIn") {
+      setNewGame(false);
+      setPlayedGames((prevState) => {
+        return (prevState += 1);
+      });
+    }
+    setRoute(route);
+  }
 
   function start() {
     setNewGame(() => true);
@@ -64,6 +94,11 @@ function App() {
     return newArray;
   }
 
+  function changeCategory(event) {
+    const { value } = event.target;
+    setCategory(value);
+  }
+
   function changeHeld(id) {
     if (buttonOn === false) {
       setData((data) => {
@@ -98,27 +133,6 @@ function App() {
     }
   }
 
-  //! this one gives a correct updated data array
-  // function handleChange() {
-  //   let updatedAnswer = [];
-  //   for (let i = 0; i < data.length; i++) {
-  //     const answers = [];
-  //     const checkedData = { question: data[i].question, answer: answers };
-  //     for (let j = 0; j < data[i].answer.length; j++) {
-  //       if (data[i].answer[j].isTrue) {
-  //         answers.push({
-  //           ...data[i].answer[j],
-  //           checked: !data[i].answer[j].checked,
-  //         });
-  //       } else {
-  //         answers.push(data[i].answer[j]);
-  //       }
-  //     }
-  //     updatedAnswer.push(checkedData);
-  //   }
-  //   console.log("updated", updatedAnswer);
-  // }
-
   function handleChange() {
     checkRightAnswers();
     setButtonOn((prevState) => !prevState);
@@ -151,7 +165,20 @@ function App() {
       });
     } else if (buttonOn) {
       setNewGame((game) => !game);
-      setLoadedGames((games) => (games += 1));
+      fetch("https://secure-fjord-90260.herokuapp.com/game", {
+        method: "put",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: user.id, answer: rightAnswers }),
+      })
+        .then((response) => response.json())
+        .then((data) =>
+          setUser({
+            ...user,
+            games: data.games,
+            rightAnswers: data.rightanswers,
+          })
+        );
+      setPlayedGames((games) => (games += 1));
       setRightAnswers(0);
     }
   }
@@ -167,37 +194,57 @@ function App() {
   }
 
   React.useEffect(() => {
-    fetch(
-      "https://opentdb.com/api.php?amount=5&category=9&difficulty=medium&type=multiple&encode=base64"
-    )
+    fetch(API)
       .then((res) => res.json())
       .then((data) => setData(data.results));
-  }, [loadedGames]);
+  }, [playedGames, category]);
 
-  // console.log("dataact", data);
-
-  return newGame ? (
-    <div className="app">
-      <Main data={data} handleChange={changeHeld} />
-      <Button
-        handleChange={handleChange}
-        data={data}
-        buttonOn={buttonOn}
-        answers={rightAnswers}
+  return (
+    <div>
+      <Overlay user={user} answers={rightAnswers} />
+      <Navigation
+        route={route}
+        routeChange={onRouteChange}
+        user={user}
+        changeCategory={changeCategory}
+        category={category}
+        newGame={newGame}
       />
-    </div>
-  ) : (
-    <div className="start">
-      <header className="start-header">
-        <img src={logo} className="start-logo" alt="logo" />
-        <button
-          onClick={start}
-          className="start-button"
-          href="https://reactjs.org"
-        >
-          Start quiz
-        </button>
-      </header>
+
+      {route === "signIn" ? (
+        <div>
+          <SignIn loadUser={loadUser} routeChange={onRouteChange} />
+        </div>
+      ) : route === "register" ? (
+        <div>
+          <Register loadUser={loadUser} routeChange={onRouteChange} />
+        </div>
+      ) : newGame ? (
+        <div>
+          <div className="app mt5">
+            <Main data={data} handleChange={changeHeld} />
+            <Button
+              handleChange={handleChange}
+              data={data}
+              buttonOn={buttonOn}
+              answers={rightAnswers}
+            />
+          </div>
+        </div>
+      ) : (
+        <div className="start mt6">
+          <header className="start-header ">
+            <img src={logo} className="start-logo" alt="logo" />
+            <button
+              onClick={start}
+              className="start-button"
+              href="https://reactjs.org"
+            >
+              Start quiz
+            </button>
+          </header>
+        </div>
+      )}
     </div>
   );
 }

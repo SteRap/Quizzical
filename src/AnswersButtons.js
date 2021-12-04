@@ -2,6 +2,13 @@ import React from "react";
 import { Base64 } from "js-base64";
 
 function AnswersButtons(props) {
+  // const classes =
+  //   (props.checked && !props.isHeld && "bg-grey-wrong main-button") ||
+  //   (props.checked && "bg-green main-button") ||
+  //   (props.isWrong && "bg-red main-button") ||
+  //   (props.isHeld && "bg-blue main-button") ||
+  //   "main-button";
+
   const styles = {
     backgroundColor:
       (props.checked && !props.isHeld && "#D1D6D8") ||
@@ -13,7 +20,7 @@ function AnswersButtons(props) {
       (props.checked && "1px solid #00FF56") ||
       (props.isWrong && "1px solid #FF2800") ||
       (props.isHeld ? "1px solid transparent" : "1px solid #09C2FF"),
-    boxShadow: props.isHeld ? "none" : "0px 2px 2px rgba(0, 0, 0, 0.2)",
+    boxShadow: props.isHeld ? "none" : "0px 3px 2px rgba(0, 0, 0, 0.2)",
   };
 
   return (
