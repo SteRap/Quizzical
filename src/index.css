@@ -129,11 +129,8 @@ code {
 }
 
 .main-button {
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-  padding-inline: clamp(0.7rem, 2vw, 1.2rem);
+  padding: 0.3rem clamp(0.7rem, 2vw, 1.2rem);
   min-height: 1.7rem;
-  max-height: fit-content;
   box-sizing: border-box;
   border-radius: 15px;
   cursor: pointer;
