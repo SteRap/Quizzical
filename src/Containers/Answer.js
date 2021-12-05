@@ -1,5 +1,5 @@
 import React from "react";
-import AnswersButtons from "./AnswersButtons";
+import AnswersButtons from "../Components/AnswersButtons";
 
 function Answer(props) {
   const answersArray = [];

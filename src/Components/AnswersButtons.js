@@ -2,13 +2,6 @@ import React from "react";
 import { Base64 } from "js-base64";
 
 function AnswersButtons(props) {
-  // const classes =
-  //   (props.checked && !props.isHeld && "bg-grey-wrong main-button") ||
-  //   (props.checked && "bg-green main-button") ||
-  //   (props.isWrong && "bg-red main-button") ||
-  //   (props.isHeld && "bg-blue main-button") ||
-  //   "main-button";
-
   const styles = {
     backgroundColor:
       (props.checked && !props.isHeld && "#D1D6D8") ||

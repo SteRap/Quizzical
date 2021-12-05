@@ -159,7 +159,7 @@ label {
 }
 select {
   appearance: none;
-  background-image: url(./categories.png);
+  background-image: url(./Media/logo_categories.png);
   background-repeat: no-repeat;
   background-size: 1.3rem;
   background-position: center;
@@ -206,7 +206,7 @@ select {
   select {
     appearance: none;
     font-display: none;
-    background-image: url(./categories.png);
+    background-image: url(./Media/logo_categories.png);
     background-repeat: no-repeat;
     background-size: 1.6rem;
     background-position-x: 98%;
@@ -235,7 +235,7 @@ select {
   select {
     appearance: none;
     font-display: none;
-    background-image: url(./categories.png);
+    background-image: url(./Media/logo_categories.png);
     background-repeat: no-repeat;
     background-size: 1.6rem;
     background-position-x: 98%;

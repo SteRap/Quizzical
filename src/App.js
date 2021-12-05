@@ -1,11 +1,11 @@
 import React from "react";
-import Main from "./Main";
-import Button from "./Button";
-import SignIn from "./Signin";
-import Register from "./Register";
-import logo from "./logo3_app.png";
-import Navigation from "./Navigation";
-import Overlay from "./Overlay";
+import Main from "./Containers/Main";
+import Button from "./Containers/Button";
+import SignIn from "./Components/Signin";
+import Register from "./Components/Register";
+import logo from "./Media/logo_app.png";
+import Navigation from "./Containers/Navigation";
+import Overlay from "./Components/Overlay";
 
 import { nanoid } from "nanoid";
 

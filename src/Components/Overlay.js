@@ -1,6 +1,6 @@
 import React from "react";
 import Confetti from "react-confetti";
-import confetti from "./confetti.png";
+import confetti from "../Media/confetti.png";
 
 function Overlay(props) {
   const [disabledOn, setDisabledOn] = React.useState(false);

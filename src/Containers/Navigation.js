@@ -1,9 +1,9 @@
 import React from "react";
-import Category from "./Category";
-import logo from "./logo_app_bcg.png";
-import logoGames from "./logo_games.png";
-import logoScore from "./score.png";
-import "./index.scss";
+import Category from "../Components/Category";
+import logo from "../Media/logo_app_bcg.png";
+import logoGames from "../Media/logo_games.png";
+import logoScore from "../Media/logo_score.png";
+import "../index.scss";
 
 function Navigation(props) {
   let avgScore = props.user.rightAnswers / props.user.games;
