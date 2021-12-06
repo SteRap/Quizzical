@@ -17,7 +17,7 @@ function Overlay(props) {
     });
   }, [rightAnswers]);
 
-  const styles = { display: disabledOn === false ? "flex" : "none" };
+  const styles = { display: disabledOn === true ? "flex" : "none" };
 
   return (
     <div
