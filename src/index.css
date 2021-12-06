@@ -288,9 +288,10 @@ select {
 #text {
   text-shadow: 6px 3px 0 rgba(143, 143, 143, 0.95),
     10px 7px 8px rgba(43, 255, 115);
+  text-align: center;
   padding: 1rem;
   position: absolute;
-  top: 25%;
+  top: 38%;
   left: 50%;
   font-size: clamp(2rem, 8.5vw, 4.5rem);
   font-weight: 600;
@@ -301,7 +302,11 @@ select {
 
 .image-confetti {
   height: clamp(2rem, 8.5vw, 4.5rem);
-  margin-left: 1rem;
+  display: block;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
 }
 
 .signin-credentials {
