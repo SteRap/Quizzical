@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Quizzical/static/css/main.97fb7b47.chunk.css",
+    "main.js": "/Quizzical/static/js/main.214ce574.chunk.js",
+    "main.js.map": "/Quizzical/static/js/main.214ce574.chunk.js.map",
+    "runtime-main.js": "/Quizzical/static/js/runtime-main.27147da8.js",
+    "runtime-main.js.map": "/Quizzical/static/js/runtime-main.27147da8.js.map",
+    "static/js/2.ce1054c7.chunk.js": "/Quizzical/static/js/2.ce1054c7.chunk.js",
+    "static/js/2.ce1054c7.chunk.js.map": "/Quizzical/static/js/2.ce1054c7.chunk.js.map",
+    "static/js/3.fde986c6.chunk.js": "/Quizzical/static/js/3.fde986c6.chunk.js",
+    "static/js/3.fde986c6.chunk.js.map": "/Quizzical/static/js/3.fde986c6.chunk.js.map",
+    "index.html": "/Quizzical/index.html",
+    "static/css/main.97fb7b47.chunk.css.map": "/Quizzical/static/css/main.97fb7b47.chunk.css.map",
+    "static/js/2.ce1054c7.chunk.js.LICENSE.txt": "/Quizzical/static/js/2.ce1054c7.chunk.js.LICENSE.txt",
+    "static/js/main.214ce574.chunk.js.LICENSE.txt": "/Quizzical/static/js/main.214ce574.chunk.js.LICENSE.txt",
+    "static/media/logo_app.4fd051a0.png": "/Quizzical/static/media/logo_app.4fd051a0.png",
+    "static/media/index.css": "/Quizzical/static/media/logo_app_bcg.1cee8498.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.27147da8.js",
+    "static/js/2.ce1054c7.chunk.js",
+    "static/css/main.97fb7b47.chunk.css",
+    "static/js/main.214ce574.chunk.js"
+  ]
+}
