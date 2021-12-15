@@ -25,16 +25,19 @@ To mantain the data for users'profile and for their games and scores, I use the 
 <h3>Hosting</h3>
 Frontend, Backend and Database are all of them hosted by HEROKU https://www.heroku.com/home
 
-<h3>Challenges</h3>
+<h2>Challenges</h2>
 FRONTEND: Being my first solo project using React, the main challenges were about 1. the architecture of the app; 2. dealing with States and components that could affect parents' and siblings' States (NB I didn't use Redux); 3. tailoring the API response to have clean data (e.g. have the answers that could be displayed randomly --> right answers NOT always on the 4th position); 4. rendering component at my needs (--> learning React.useEffecthas been a must). 
 BACKEND: On the backend side, the main difficulties have been 1. creating working queries 2. allow the DB tables to relate between them; 3. use req.body to transfer users'inputs to the backend. 
 DATABASE: Luckly it was easier that expected, but still it requires some efforts to move myself around with a new language and the use of the software DBeaver. 
 
-<h3>Learnings</h3>  
+<h2>Learnings</h2>  
+
 Developing and working on this project has been extremely fun. The knowledge and skills learnt and developed are such tremendous that will be difficult to report all of them here. Still, at the end of the project I feel much more confortable developping React app with functional components, dealing with React States, using React Hooks, performs fetch API and create a backend to serve a frontend app.
 
-<h3>Credits</h3>
+<h2>Credits</h2>
+
 Extremely felt gratitude is due to Bob Ziroll https://github.com/bobziroll that taught me lot of skills to work with React; and to Andrei Neagoie https://github.com/aneagoie founder of ZeroToMastery, that as part of the 37-hours-long course https://www.udemy.com/course/the-complete-web-developer-zero-to-mastery/learn/lecture/19845426#overview taught me countless knowledge including the ones to create the backend and Database of Quizzical. 
 
-<h3>Contributions</h3>
+<h2>Contributions</h2>
+
 If you are interested to contribute to this project, a couple of ideas are: 1. create frontend validation for Register and Sign In forms (so far validation is only on the server side); 2. Add feature to allow users to change the difficult level for the questions (so far, I used a template literals on the API url to change the questions' category); 3. Make the navbar collapsable for mobile devices so that the feature to change questions' category is more visible. Thank you.
