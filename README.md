@@ -19,7 +19,7 @@ On top of CSS3, I relied on Tachyons https://tachyons.io libraries for the SignI
 https://github.com/SteRap/Quizzical-backend/
 
 For the backend, I use NODE.js powered with EXPRESS.js. In addiction, I relied on few npm extensions: 1. BodyParser https://www.npmjs.com/package/body-parser as the middleware to enable the communication and data exchange between the frontend and the backend; 2. KNEX.js https://knexjs.org to powered Node.js and create better queries; 3. BCRYPT https://www.npmjs.com/package/bcrypt to encrypt users'passwords and guarentee security; 4. CORS https://www.npmjs.com/package/cors the package for providing the Express middleware that can be used to enable CORS with various options.
-To test the server requests I relied on Postman https://www.postman.com. 
+To test the server's requests I relied on Postman https://www.postman.com. 
 
 <h3>Database</h3> 
 To mantain the data for users'profile and for their games and scores, I use the relational database PostegreSQL. To work better with it I relied on the database tool DBeaver https://dbeaver.io. On the matter, I structured the database by creating to tables: 1. Login 2. Users. They communicate between them through the common value (EMAIL). 
