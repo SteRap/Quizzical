@@ -28,7 +28,7 @@ To mantain the data for users'profile and for their games and scores, I use the 
 Frontend, Backend and Database are all of them hosted by HEROKU https://www.heroku.com/home
 
 <h2>Challenges</h2>
-FRONTEND: Being my first solo project using React, the main challenges were about 1. the architecture of the app; 2. dealing with States and components that could affect parents' and siblings' States (NB I didn't use Redux); 3. tailoring the API response to have clean data (e.g. have the answers that could be displayed randomly --> right answers NOT always on the 4th position); 4. rendering component at my needs (--> learning React.useEffecthas been a must). 
+FRONTEND: Being my first solo project using React, the main challenges have been about 1. the architecture of the app; 2. dealing with States and components that could affect parents' and siblings' States (NB I didn't use Redux); 3. tailoring the API response to have clean data (e.g. have the answers that could be displayed randomly --> right answers NOT always on the 4th position); 4. rendering components at my needs (--> learning React.useEffecthas been a must). 
 BACKEND: On the backend side, the main difficulties have been 1. creating working queries 2. allow the DB tables to relate between them; 3. use req.body to transfer users'inputs to the backend. 
 DATABASE: Luckly it was easier that expected, but still it requires some efforts to move myself around with a new language and the use of the software DBeaver. 
 
