@@ -34,7 +34,7 @@ DATABASE: Luckly it was easier than expected, but still it requires some efforts
 
 <h2>Learnings</h2>  
 
-Developing and working on this project has been extremely fun. The knowledge and skills learnt and developed are such tremendous that will be difficult to report all of them here. Still, at the end of the project I feel much more confortable developping React app with functional components, dealing with React States, using React Hooks, performs fetch API and create a backend to serve a frontend app.
+Developing and working on this project has been extremely fun. The knowledge and skills learnt and developed are such tremendous that will be difficult to report all of them here. Still, at the end of the project I feel much more confortable developping React app with functional components, dealing with React States, using React Hooks,  performing API fetches and creating a backend to serve a frontend app.
 
 <h2>Credits</h2>
 
