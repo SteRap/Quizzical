@@ -22,7 +22,7 @@ For the backend, I use NODE.js powered with EXPRESS.js. In addiction, I relied o
 To test the server's requests I relied on Postman https://www.postman.com. 
 
 <h3>Database</h3> 
-To mantain the data for users'profile and for their games and scores, I use the relational database PostegreSQL. To work better with it I relied on the database tool DBeaver https://dbeaver.io. On the matter, I structured the database by creating to tables: 1. Login 2. Users. They communicate between them through the common value (EMAIL). 
+To mantain the data for users'profile and for their games and scores, I use the relational database PostegreSQL. To work better with it I relied on the database tool DBeaver https://dbeaver.io. On the matter, I structured the database by creating two tables: 1. Login 2. Users. They communicate between them through the common value (EMAIL). 
 
 <h3>Hosting</h3>
 Frontend, Backend and Database are all of them hosted by HEROKU https://www.heroku.com/home
