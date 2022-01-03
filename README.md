@@ -38,7 +38,7 @@ Developing and working on this project has been extremely fun. The knowledge and
 
 <h2>Credits</h2>
 
-Extremely felt gratitude is due to Bob Ziroll https://github.com/bobziroll that taught me lot of skills to work with React; and to Andrei Neagoie https://github.com/aneagoie founder of ZeroToMastery, that as part of the 37-hours-long course https://www.udemy.com/course/the-complete-web-developer-zero-to-mastery/learn/lecture/19845426#overview taught me countless knowledge including the ones to create the backend and Database of Quizzical. 
+Extremely felt gratitude is due to Bob Ziroll https://github.com/bobziroll that taught me lot of skills to work with React; and to Andrei Neagoie who taught me, through a 37-long-hours course https://www.udemy.com/course/the-complete-web-developer-zero-to-mastery/learn/lecture/19845426#overview, countless knowledge including the ones to create the backend and Database of Quizzical. 
 
 <h2>Contributions</h2>
 
