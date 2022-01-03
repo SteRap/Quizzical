@@ -8,7 +8,7 @@ https://quizzical-game.herokuapp.com
 
 <h2>Motivation</h2>
 I started to develop Quizzical as the solo final project of the React course provided by Scrimba https://scrimba.com/ and taught by Bob Ziroll. 
-The only requirements were 1. to use React to create a frontend app that 2. fetched the questions/answers from the Open Trivia DataBase https://opentdb.com/api_config.phpabout. However, I saw good rooms to improve the app and decided 1. to allow users to choose different categories of questions, 2. to serve the app with the backend. Using a server was a must to allow players to monitor their scores and incentivize them to play more games an to improve their scores. 
+The only requirements were 1. to use React to create a frontend app that 2. fetched the questions/answers from the Open Trivia DataBase https://opentdb.com/api_config.phpabout. However, I saw good rooms to improve the app and decided 1. to allow users to choose different categories of questions, 2. to serve the app with the backend. Using a server was a must to allow players to monitor their scores and incentivize them to improve their scores playing more games.
 
 <h2>Technologies</h2>
 <h3>Frontend</h3>
