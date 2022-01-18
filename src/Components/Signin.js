@@ -4,9 +4,12 @@ function SignIn(props) {
   const [signInEmail, setSignInEmail] = React.useState("");
   const [signInPassword, setSignInPassword] = React.useState("");
   const [wrongCredentials, setWrongCredentials] = React.useState(false);
+  const [clickedSignin, setClickedSignin] = React.useState(false);
+  const [invalidEmail, setInvalidEmail] = React.useState(false);
 
   function onEmailChange(event) {
     setSignInEmail(event.target.value);
+    onInvalidEmail(event.target.value);
   }
 
   function onPasswordChange(event) {
@@ -33,11 +36,39 @@ function SignIn(props) {
       });
   }
 
+  function onClickedSignin() {
+    setClickedSignin(true);
+    onInvalidEmail();
+  }
+
+  function onInvalidEmail(signInEmail) {
+    let regex =
+      /[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i;
+    if (!regex.test(signInEmail)) {
+      setInvalidEmail(true);
+    } else {
+      setInvalidEmail(false);
+    }
+  }
+
   function onEnterSubmitSignin(event) {
     if (event.keyCode === 13) {
       onSubmitSignin();
     }
   }
+
+  console.log("sign", clickedSignin);
+
+  // function onWrongEmail() {
+  //   if (signInEmail === "") {
+  //     setWrongEmail(true);
+  //   } else {
+  //     setWrongEmail(false);
+  //   }
+  // }
+
+  console.log("email", invalidEmail);
+  console.log("current email", signInEmail);
 
   return (
     <div>
@@ -69,6 +100,11 @@ function SignIn(props) {
                 onChange={onEmailChange}
               />
             </div>
+            {invalidEmail && (
+              <div className="signin-credentials">
+                Please insert a valid Email!
+              </div>
+            )}
             <div className="mt3">
               <label className="db fw4 lh-copy f5" htmlFor="password">
                 Password
@@ -87,7 +123,7 @@ function SignIn(props) {
               className="b ph3 pv2 input-reset ba b--black grow pointer f5 br2 form-button"
               type="submit"
               value="Sign In"
-              onClick={onSubmitSignin}
+              onClick={(onSubmitSignin, onClickedSignin)}
             />
             <p
               onClick={() => props.routeChange("register")}
