@@ -4,8 +4,9 @@ function SignIn(props) {
   const [signInEmail, setSignInEmail] = React.useState("");
   const [signInPassword, setSignInPassword] = React.useState("");
   const [wrongCredentials, setWrongCredentials] = React.useState(false);
-  const [clickedSignin, setClickedSignin] = React.useState(false);
   const [invalidEmail, setInvalidEmail] = React.useState(false);
+  const [invalidPassword, setInvalidPassword] = React.useState(false);
+  const [clickedSignin, setClickedSignin] = React.useState(false);
 
   function onEmailChange(event) {
     setSignInEmail(event.target.value);
@@ -14,9 +15,11 @@ function SignIn(props) {
 
   function onPasswordChange(event) {
     setSignInPassword(event.target.value);
+    onInvalidPassword(event.target.value);
   }
 
   function onSubmitSignin() {
+    setClickedSignin(true);
     fetch("https://secure-fjord-90260.herokuapp.com/signin", {
       method: "post",
       headers: { "Content-Type": "application/json" },
@@ -36,18 +39,21 @@ function SignIn(props) {
       });
   }
 
-  function onClickedSignin() {
-    setClickedSignin(true);
-    onInvalidEmail();
-  }
-
   function onInvalidEmail(signInEmail) {
     let regex =
-      /[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i;
+      /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i;
     if (!regex.test(signInEmail)) {
       setInvalidEmail(true);
     } else {
       setInvalidEmail(false);
+    }
+  }
+
+  function onInvalidPassword(signInPassword) {
+    if (signInPassword.length < 8) {
+      setInvalidPassword(true);
+    } else {
+      setInvalidPassword(false);
     }
   }
 
@@ -56,19 +62,6 @@ function SignIn(props) {
       onSubmitSignin();
     }
   }
-
-  console.log("sign", clickedSignin);
-
-  // function onWrongEmail() {
-  //   if (signInEmail === "") {
-  //     setWrongEmail(true);
-  //   } else {
-  //     setWrongEmail(false);
-  //   }
-  // }
-
-  console.log("email", invalidEmail);
-  console.log("current email", signInEmail);
 
   return (
     <div>
@@ -117,13 +110,18 @@ function SignIn(props) {
                 onChange={onPasswordChange}
               />
             </div>
+            {invalidPassword && (
+              <div className="signin-credentials">
+                Your Password should be at least 8 characters long!
+              </div>
+            )}
           </fieldset>
           <div className="flex justify-between items-center mt3">
             <input
               className="b ph3 pv2 input-reset ba b--black grow pointer f5 br2 form-button"
               type="submit"
               value="Sign In"
-              onClick={(onSubmitSignin, onClickedSignin)}
+              onClick={onSubmitSignin}
             />
             <p
               onClick={() => props.routeChange("register")}
@@ -132,7 +130,10 @@ function SignIn(props) {
               Register
             </p>
           </div>
-          {wrongCredentials && (
+          {clickedSignin && !wrongCredentials && (
+            <div className="signin-credentials">Checking ...</div>
+          )}
+          {clickedSignin && wrongCredentials && (
             <div className="signin-credentials">
               You inserted wrong credentials. <br /> Please try again!
             </div>

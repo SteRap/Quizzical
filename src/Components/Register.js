@@ -5,17 +5,39 @@ function Register(props) {
   const [registerPassword, setRegisterPassword] = React.useState("");
   const [registerUsername, setRegisterUsername] = React.useState("");
   const [registrationOff, setRegistrationOff] = React.useState(false);
+  const [invalidEmail, setInvalidEmail] = React.useState(false);
+  const [invalidPassword, setInvalidPassword] = React.useState(false);
 
   function onSetEmail(event) {
     setRegisterEmail(event.target.value);
+    onInvalidEmail(event.target.value);
   }
 
   function onSetPassword(event) {
     setRegisterPassword(event.target.value);
+    onInvalidPassword(event.target.value);
   }
 
   function onSetUsername(event) {
     setRegisterUsername(event.target.value);
+  }
+
+  function onInvalidEmail(signInEmail) {
+    let regex =
+      /[a-z0-9!#$%&'*+=/?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/i;
+    if (!regex.test(signInEmail)) {
+      setInvalidEmail(true);
+    } else {
+      setInvalidEmail(false);
+    }
+  }
+
+  function onInvalidPassword(signInPassword) {
+    if (signInPassword.length < 8) {
+      setInvalidPassword(true);
+    } else {
+      setInvalidPassword(false);
+    }
   }
 
   function onSubmitRegister() {
@@ -85,6 +107,11 @@ function Register(props) {
                 onChange={onSetEmail}
               />
             </div>
+            {invalidEmail && (
+              <div className="signin-credentials">
+                Please insert a valid Email!
+              </div>
+            )}
             <div className="mt3">
               <label className="db fw4 lh-copy f5" htmlFor="password">
                 Password
@@ -97,6 +124,11 @@ function Register(props) {
                 onChange={onSetPassword}
               />
             </div>
+            {invalidPassword && (
+              <div className="signin-credentials">
+                Your Password should be at least 8 characters long!
+              </div>
+            )}
           </fieldset>
           <div className="flex justify-between items-center mt2">
             <input
