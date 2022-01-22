@@ -1,4 +1,5 @@
 import React from "react";
+import Errors from "./Errors";
 
 function SignIn(props) {
   const [signInEmail, setSignInEmail] = React.useState("");
@@ -93,11 +94,7 @@ function SignIn(props) {
                 onChange={onEmailChange}
               />
             </div>
-            {invalidEmail && (
-              <div className="signin-credentials">
-                Please insert a valid Email!
-              </div>
-            )}
+            {invalidEmail && <Errors num={0} />}
             <div className="mt3">
               <label className="db fw4 lh-copy f5" htmlFor="password">
                 Password
@@ -110,11 +107,7 @@ function SignIn(props) {
                 onChange={onPasswordChange}
               />
             </div>
-            {invalidPassword && (
-              <div className="signin-credentials">
-                Your Password should be at least 8 characters long!
-              </div>
-            )}
+            {invalidPassword && <Errors num={1} />}
           </fieldset>
           <div className="flex justify-between items-center mt3">
             <input
@@ -130,14 +123,8 @@ function SignIn(props) {
               Register
             </p>
           </div>
-          {clickedSignin && !wrongCredentials && (
-            <div className="signin-credentials">Checking ...</div>
-          )}
-          {clickedSignin && wrongCredentials && (
-            <div className="signin-credentials">
-              You inserted wrong credentials. <br /> Please try again!
-            </div>
-          )}
+          {clickedSignin && !wrongCredentials && <Errors num={2} />}
+          {clickedSignin && wrongCredentials && <Errors num={3} />}
         </main>
       </article>
     </div>

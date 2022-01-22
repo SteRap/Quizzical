@@ -1,4 +1,5 @@
 import React from "react";
+import Errors from "./Errors";
 
 function Register(props) {
   const [registerEmail, setRegisterEmail] = React.useState("");
@@ -107,11 +108,7 @@ function Register(props) {
                 onChange={onSetEmail}
               />
             </div>
-            {invalidEmail && (
-              <div className="signin-credentials">
-                Please insert a valid Email!
-              </div>
-            )}
+            {invalidEmail && <Errors num={0} />}
             <div className="mt3">
               <label className="db fw4 lh-copy f5" htmlFor="password">
                 Password
@@ -124,11 +121,7 @@ function Register(props) {
                 onChange={onSetPassword}
               />
             </div>
-            {invalidPassword && (
-              <div className="signin-credentials">
-                Your Password should be at least 8 characters long!
-              </div>
-            )}
+            {invalidPassword && <Errors num={1} />}
           </fieldset>
           <div className="flex justify-between items-center mt2">
             <input
@@ -144,11 +137,7 @@ function Register(props) {
               Sign In
             </p>
           </div>
-          {registrationOff && (
-            <div className="registration-Off">
-              Unable to register user. <br /> Please, fill all the input fields.
-            </div>
-          )}
+          {registrationOff && <Errors num={4} />}
         </main>
       </article>
     </div>
