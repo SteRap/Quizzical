@@ -9,7 +9,7 @@ function Button(props) {
     let count = 0;
     for (let i = 0; i < props.data.length; i++) {
       for (let j = 0; j < props.data[i].answer.length; j++) {
-        if (props.data[i].answer[j].isHeld) {
+        if (props.data[i].answer[j].isSelected) {
           count++;
         }
       }
@@ -28,19 +28,19 @@ function Button(props) {
 
   return (
     <div className="button-component">
-      {props.buttonOn && (
+      {props.buttonCheck && (
         <h3 className="button-result">
           You scored {props.answers}/5 right answers!
         </h3>
       )}
       <button
         className="button-button"
-        onClick={props.handleChange}
+        onClick={props.endStartGame}
         data={props.data}
         disabled={!allSelected() ? true : false}
         style={styles}
       >
-        {!props.buttonOn ? "Check Answers" : "Start a New Game"}
+        {!props.buttonCheck ? "Check Answers" : "Start a New Game"}
       </button>
     </div>
   );

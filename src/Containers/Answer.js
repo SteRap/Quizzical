@@ -42,10 +42,10 @@ function Answer(props) {
     <AnswersButtons
       answer={option.answer}
       key={option.id}
-      isHeld={option.isHeld}
+      isSelected={option.isSelected}
       id={option.id}
       checked={option.checked}
-      handleChange={props.handleChange}
+      handleSelection={props.handleSelection}
       isWrong={option.isWrong}
     />
   ));

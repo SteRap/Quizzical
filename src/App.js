@@ -7,20 +7,22 @@ import logo from "./Media/logo_app.png";
 import Navigation from "./Containers/Navigation";
 import Overlay from "./Components/Overlay";
 
-import { nanoid } from "nanoid";
+import { nanoid } from "nanoid"; // set unique keys
 
 function App() {
   const [newGame, setNewGame] = React.useState(false);
   const [data, setData] = React.useState([]);
-  const [buttonOn, setButtonOn] = React.useState(false);
+  const [buttonCheck, setButtonCheck] = React.useState(false);
   const [playedGames, setPlayedGames] = React.useState(0);
   const [rightAnswers, setRightAnswers] = React.useState(0);
   const [route, setRoute] = React.useState("signIn");
   const [user, setUser] = React.useState({});
   const [category, setCategory] = React.useState(9);
 
+  // Trivia API, that can be called for different categories
   const API = `https://opentdb.com/api.php?amount=5&category=${category}&difficulty=medium&type=multiple&encode=base64`;
 
+  // set the Player info from the DB
   function loadUser(data) {
     setUser({
       id: data.id,
@@ -32,6 +34,7 @@ function App() {
     });
   }
 
+  // change page for Signin
   function onRouteChange(route) {
     if (route === "signIn") {
       setNewGame(false);
@@ -42,15 +45,17 @@ function App() {
     setRoute(route);
   }
 
+  // start a new game
   function start() {
     setNewGame(() => true);
     setData(generateAPI());
   }
 
+  // tilt the API to retrive informations that we need
   function generateAPI() {
-    const newArray = [];
+    const updatedAPI = [];
     for (let i = 0; i < data.length; i++) {
-      newArray.push({
+      updatedAPI.push({
         question: {
           question: data[i].question,
           id: nanoid(),
@@ -59,7 +64,7 @@ function App() {
           {
             answer: data[i].incorrect_answers[0],
             id: nanoid(),
-            isHeld: false,
+            isSelected: false,
             isTrue: false,
             isWrong: false,
             checked: false,
@@ -67,7 +72,7 @@ function App() {
           {
             answer: data[i].incorrect_answers[1],
             id: nanoid(),
-            isHeld: false,
+            isSelected: false,
             isTrue: false,
             isWrong: false,
             checked: false,
@@ -75,7 +80,7 @@ function App() {
           {
             answer: data[i].incorrect_answers[2],
             id: nanoid(),
-            isHeld: false,
+            isSelected: false,
             isTrue: false,
             isWrong: false,
             checked: false,
@@ -83,7 +88,7 @@ function App() {
           {
             answer: data[i].correct_answer,
             id: nanoid(),
-            isHeld: false,
+            isSelected: false,
             isTrue: true,
             isWrong: false,
             checked: false,
@@ -91,18 +96,20 @@ function App() {
         ],
       });
     }
-    return newArray;
+    return updatedAPI;
   }
 
+  // change Category for questions
   function changeCategory(event) {
     const { value } = event.target;
     setCategory(value);
   }
 
-  function changeHeld(id) {
-    if (buttonOn === false) {
+  // Function to make sure only one answer per group can be selected
+  function changeSelection(id) {
+    if (buttonCheck === false) {
       setData((data) => {
-        const updatedAnswer = [];
+        const updatedData = [];
         for (let i = 0; i < data.length; i++) {
           const currentGroup = data[i].answer;
           const answer = [];
@@ -115,55 +122,62 @@ function App() {
             if (currentAnswer.id === id) {
               answer.push({
                 ...currentAnswer,
-                isHeld: !currentAnswer.isHeld,
+                isSelected: !currentAnswer.isSelected,
               });
+              // Diselected the others in the same group, but don't touch the answers in the other groups
             } else if (
               currentAnswer.id !== id &&
               currentGroup.filter((answers) => answers.id === id).length > 0
             ) {
-              answer.push({ ...currentAnswer, isHeld: false });
+              answer.push({ ...currentAnswer, isSelected: false });
             } else {
               answer.push(currentAnswer);
             }
           }
-          updatedAnswer.push(checkedData);
+          updatedData.push(checkedData);
         }
-        return updatedAnswer;
+        return updatedData;
       });
     }
   }
 
-  function handleChange() {
+  //the same button check for right answers and after checking, it starts a new game
+  function endStartGame() {
     checkRightAnswers();
-    setButtonOn((prevState) => !prevState);
-    if (buttonOn === false) {
+    setButtonCheck((prevState) => !prevState);
+    // check right answers pairing API info with answers Selected
+    if (buttonCheck === false) {
       setData((data) => {
-        let updatedAnswer = [];
+        let updatedData = [];
         for (let i = 0; i < data.length; i++) {
+          const currentGroup = data[i].answer;
           const answers = [];
           const checkedData = { question: data[i].question, answer: answers };
-          for (let j = 0; j < data[i].answer.length; j++) {
-            if (data[i].answer[j].isTrue) {
+          for (let j = 0; j < currentGroup.length; j++) {
+            const currentAnswer = currentAnswer;
+            if (currentAnswer.isTrue) {
               answers.push({
-                ...data[i].answer[j],
-                checked: !data[i].answer[j].checked,
+                ...currentAnswer,
+                checked: !currentAnswer.checked,
               });
+              // if not True check if it was select (=wrong)
             } else {
-              if (data[i].answer[j].isHeld) {
+              if (currentAnswer.isSelected) {
                 answers.push({
-                  ...data[i].answer[j],
+                  ...currentAnswer,
                   isWrong: true,
                 });
               } else {
-                answers.push(data[i].answer[j]);
+                answers.push(currentAnswer);
               }
             }
           }
-          updatedAnswer.push(checkedData);
+          updatedData.push(checkedData);
         }
-        return updatedAnswer;
+        return updatedData;
       });
-    } else if (buttonOn) {
+      // when answers are checked, the button start a new game an update users'stats
+    } else if (buttonCheck) {
       setNewGame((game) => !game);
       fetch("https://secure-fjord-90260.herokuapp.com/game", {
         method: "put",
@@ -178,21 +192,25 @@ function App() {
             rightAnswers: data.rightanswers,
           })
         );
+      // dependency array for fetch API (use.Effect)
       setPlayedGames((games) => (games += 1));
+      // reset the answers for a new Game
       setRightAnswers(0);
     }
   }
 
+  // count how many answers are right
   function checkRightAnswers() {
     for (let i = 0; i < data.length; i++) {
       for (let j = 0; j < data[i].answer.length; j++) {
-        if (data[i].answer[j].isTrue && data[i].answer[j].isHeld) {
+        if (data[i].answer[j].isTrue && data[i].answer[j].isSelected) {
           setRightAnswers((answers) => (answers += 1));
         }
       }
     }
   }
 
+  // Fetch API and set the Data everytime a new game start or category is changed
   React.useEffect(() => {
     fetch(API)
       .then((res) => res.json())
@@ -210,7 +228,7 @@ function App() {
         category={category}
         newGame={newGame}
       />
-
+      {/* display pages accordingly to the route */}
       {route === "signIn" ? (
         <div>
           <SignIn loadUser={loadUser} routeChange={onRouteChange} />
@@ -222,11 +240,11 @@ function App() {
       ) : newGame ? (
         <div>
           <div className="app">
-            <Main data={data} handleChange={changeHeld} />
+            <Main data={data} handleSelection={changeSelection} />
             <Button
-              handleChange={handleChange}
+              endStartGame={endStartGame}
               data={data}
-              buttonOn={buttonOn}
+              buttonCheck={buttonCheck}
               answers={rightAnswers}
             />
           </div>
@@ -235,11 +253,7 @@ function App() {
         <div className="start mt6">
           <header className="start-header ">
             <img src={logo} className="start-logo" alt="logo" />
-            <button
-              onClick={start}
-              className="start-button"
-              href="https://reactjs.org"
-            >
+            <button onClick={start} className="start-button">
               Start quiz
             </button>
           </header>

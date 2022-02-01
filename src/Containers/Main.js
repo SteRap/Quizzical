@@ -10,7 +10,7 @@ function Main(props) {
         key={obj.question.id}
         id={obj.question.id}
       />
-      <Answer handleChange={props.handleChange} data={obj.answer} />
+      <Answer handleSelection={props.handleSelection} data={obj.answer} />
       <hr />
     </div>
   ));
