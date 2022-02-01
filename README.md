@@ -43,4 +43,4 @@ Extremely felt gratitude is due to Bob Ziroll https://github.com/bobziroll that 
 
 <h2>Contributions</h2>
 
-If you are interested to contribute to this project, a couple of ideas are: 1. <strike> create frontend validations for Register and Sign In forms (so far validation is only on the server side) </strike> <strong>Done! &#x2713</strong>; 2. Add feature to allow users to change the difficult level for the questions (so far, I used a template literals on the API url to change the questions' category); 3. Make the navbar collapsable for mobile devices so that the feature to change questions' category is more visible. Thank you.
+If you are interested to contribute to this project, a couple of ideas are: 1. <strike> create frontend validations for Register and Sign In forms (so far validation is only on the server side) </strike> <strong>Done! U+2714</strong>; 2. Add feature to allow users to change the difficult level for the questions (so far, I used a template literals on the API url to change the questions' category); 3. Make the navbar collapsable for mobile devices so that the feature to change questions' category is more visible. Thank you.
