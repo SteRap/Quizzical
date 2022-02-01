@@ -10,9 +10,9 @@ function Navigation(props) {
   let roundedAvgScore = Math.round((avgScore > 0 ? avgScore : 0) * 100) / 100;
   const date = new Date(props.user.joined);
   const day = date.getDate();
-  const month = date.getMonth();
+  const month = date.getMonth() + 1;
   const year = date.getFullYear();
-  const capitalUser = function capitalize() {
+  const userCredentials = function capitalizeCredentials() {
     if (props.user.username !== undefined) {
       return props.user.username.replace(/^\w/, (c) => c.toUpperCase());
     } else {
@@ -92,7 +92,7 @@ function Navigation(props) {
             .concat(`${props.user.username}`.charAt(1).toUpperCase())}
         </div>
         <span className="tooltiptext">
-          {capitalUser()} you joined Quizzcal on the {day}/{month}/{year}
+          {userCredentials()} you joined Quizzcal on the {day}/{month}/{year}
         </span>
       </div>
       <div
