@@ -154,7 +154,7 @@ function App() {
           const answers = [];
           const checkedData = { question: data[i].question, answer: answers };
           for (let j = 0; j < currentGroup.length; j++) {
-            const currentAnswer = currentAnswer;
+            const currentAnswer = currentGroup[j];
             if (currentAnswer.isTrue) {
               answers.push({
                 ...currentAnswer,

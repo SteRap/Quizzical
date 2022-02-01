@@ -9,13 +9,16 @@ function Overlay(props) {
 
   React.useEffect(() => {
     setDisabledOn(() => {
-      if (rightAnswers > currentAvgScore) {
+      if (
+        rightAnswers > currentAvgScore ||
+        (!currentAvgScore && rightAnswers > 0)
+      ) {
         return true;
       } else {
         return false;
       }
     });
-  }, [rightAnswers]);
+  }, [props.answers]);
 
   const styles = { display: disabledOn === true ? "flex" : "none" };
 
