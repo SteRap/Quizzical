@@ -3,12 +3,12 @@ import Confetti from "react-confetti";
 import confetti from "../Media/confetti.png";
 
 function Overlay(props) {
-  const [disabledOn, setDisabledOn] = React.useState(false);
+  const [confettiOn, setConfettiOn] = React.useState(false);
   const currentAvgScore = props.user.rightAnswers / props.user.games;
   let rightAnswers = props.answers;
 
   React.useEffect(() => {
-    setDisabledOn(() => {
+    setConfettiOn(() => {
       if (
         rightAnswers > currentAvgScore ||
         (!currentAvgScore && rightAnswers > 0)
@@ -18,14 +18,14 @@ function Overlay(props) {
         return false;
       }
     });
-  }, [props.answers]);
+  }, [rightAnswers]);
 
-  const styles = { display: disabledOn === true ? "flex" : "none" };
+  const styles = { display: confettiOn === true ? "flex" : "none" };
 
   return (
     <div
       onClick={() => {
-        setDisabledOn(false);
+        setConfettiOn(false);
       }}
       style={styles}
       id="overlay"

@@ -3,7 +3,7 @@ import Category from "../Components/Category";
 import logo from "../Media/logo_app_bcg.png";
 import logoGames from "../Media/logo_games.png";
 import logoScore from "../Media/logo_score.png";
-import "../index.scss";
+import "./tooltip.scss";
 
 function Navigation(props) {
   let avgScore = props.user.rightAnswers / props.user.games;
