@@ -16,7 +16,7 @@ function Category(props) {
   };
 
   return (
-    <div className="category-box">
+    <div className="category-container">
       <label
         className="mr2 i f6"
         htmlFor="category"
@@ -27,6 +27,7 @@ function Category(props) {
 
       <select
         id="category"
+        className="questions-categories"
         value={props.category}
         onChange={props.changeCategory}
         disabled={props.newGame ? true : false}
